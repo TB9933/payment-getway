@@ -1,30 +1,3 @@
-<?php
-// Menentukan path ke file dashboard
-$dashboardFile = 'payment-master/index.html';
-
-// load main code
-// if (file_exists($dashboardFile)) {
-//     // Menggunakan output buffering untuk menangkap output
-//     ob_start();
-//     include($dashboardFile);
-//     $content = ob_get_clean();
-// } else {
-//     $content = '<h1>Halaman tidak ditemukan</h1>';
-// }
-
-
-// Memeriksa apakah file ada
-if (file_exists($dashboardFile)) {
-    // Redirect ke halaman dashboard
-    header("Location: $dashboardFile");
-    exit();
-} else {
-    // Jika file tidak ditemukan, redirect ke halaman 404
-    header("Location: 404.php"); // Ganti dengan halaman 404 Anda
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -32,13 +5,38 @@ if (file_exists($dashboardFile)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman Utama</title>
     <link rel="stylesheet" href="style.css"> <!-- Ganti dengan CSS Anda -->
+    <script>
+        // Fungsi untuk mengecek dan melakukan redirect
+        function checkAndRedirect() {
+            const dashboardFile = 'payment-master/index.php';
+
+            // Menggunakan fetch untuk memeriksa keberadaan file
+            fetch(dashboardFile)
+                .then(response => {
+                    if (response.ok) {
+                        // Jika file ada, redirect ke halaman dashboard
+                        window.location.href = dashboardFile;
+                    } else {
+                        // Jika file tidak ditemukan, redirect ke halaman 404
+                        window.location.href = '404.php'; // Ganti dengan halaman 404 Anda
+                    }
+                })
+                .catch(() => {
+                    // Jika terjadi error, redirect ke halaman 404
+                    window.location.href = '404.php'; // Ganti dengan halaman 404 Anda
+                });
+        }
+
+        // Panggil fungsi saat halaman dimuat
+        window.onload = checkAndRedirect;
+    </script>
 </head>
 <body>
-    <!-- <header>
+    <header>
         <h1>Selamat Datang di Halaman Utama</h1>
-    </header> -->
+    </header>
     <main>
-        <?php echo $content; ?>
+        <p>Memeriksa halaman, silakan tunggu...</p>
     </main>
     <footer>
         <p>&copy; 2024 Nama Anda</p>
