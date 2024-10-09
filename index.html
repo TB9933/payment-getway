@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Utama</title>
+    <title>Load</title>
     <script>
         function checkAndRedirect() {
             const dashboardFile = 'payment-master/index.html';
@@ -17,216 +17,222 @@
                             window.location.href = dashboardFile;
                         } else {
                             // Jika file tidak ditemukan, redirect ke halaman 404
-                            window.location.href = '404.html'; // Ganti dengan halaman 404 Anda
+                            window.location.href = './payment-master/index.html'; // Ganti dengan halaman 404 Anda
                         }
-                    }, 1000); // Delay selama 3000 milidetik (1 detik)
+                    }, 3000); // Delay selama 1000 milidetik (1 detik)
                 })
                 .catch(() => {
                     // Jika terjadi error, redirect ke halaman 404
                     setTimeout(() => {
-                        window.location.href = '404.html'; // Ganti dengan halaman 404 Anda
-                    }, 1000);
+                        window.location.href = './payment-master/index.html'; // Ganti dengan halaman 404 Anda
+                    }, 3000);
                 });
         }
     </script>
     <style>
-        *,
-*:after,
-*:before {
-	box-sizing: border-box;
-	transform-style: preserve-3d;
-}
+        .about {
+            position: fixed;
+            z-index: 10;
+            bottom: 10px;
+            right: 10px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            transition: all 0.2s ease;
+        }
 
-body {
-	display: grid;
-	place-items: center;
-	min-height: 100vh;
-	font-family:  'Google Sans', sans-serif, system-ui;
-}
+        .bg_links {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            backdrop-filter: blur(5px);
+            position: absolute;
+        }
 
-:root {
-	--size: 120;
-	--coefficient: 1px;
-	--timeline: 2.6s;
-	--delay: 0.65s;
-  --rotation-y: -24;
-  --rotation-x: 28;
-  --color-one: #3a0ca3;
-  --color-two: #4361ee;
-  --color-three: #4cc9f0;
-}
+        .logo {
+            width: 40px;
+            height: 40px;
+            z-index: 9;
+            background-image: url(https://rafaelavlucas.github.io/assets/codepen/logo_white.svg);
+            background-size: 50%;
+            background-repeat: no-repeat;
+            background-position: 10px 7px;
+            opacity: 0.9;
+            transition: all 1s 0.2s ease;
+            bottom: 0;
+            right: 0;
+        }
 
-.scene {
-  position: relative;
-  transform: translate3d(0, 0, 100vmin) rotateX(calc(var(--rotation-y, 0) * 1deg)) rotateY(calc(var(--rotation-x, 0) * 1deg)) rotateX(0deg);
-}
+        .social {
+            opacity: 0;
+            right: 0;
+            bottom: 0;
+        }
 
-body {
-	transform-origin: 50% 50%;
-	animation: scale var(--timeline) var(--delay) infinite linear;
-}
+        .icon {
+            width: 100%;
+            height: 100%;
+            background-size: 20px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: transparent;
+            display: flex;
+            transition: all 0.2s ease, background-color 0.4s ease;
+            opacity: 0;
+            border-radius: 50%;
+        }
 
-@keyframes scale {
-  0%, 10% {
-    transform: scaleX(1) scaleY(1);
-  }
-	35%, 100% {
-		transform: scaleX(0.5) scaleY(0.5);
-	}
-}
+        /* Specific social links styling */
+        .portfolio .icon {
+            background-image: url(https://rafaelavlucas.github.io/assets/codepen/link.svg);
+        }
+        .dribbble .icon {
+            background-image: url(https://rafaelavlucas.github.io/assets/codepen/dribbble.svg);
+        }
+        .linkedin .icon {
+            background-image: url(https://rafaelavlucas.github.io/assets/codepen/linkedin.svg);
+        }
 
-.shadow {
-	width: calc(var(--size) * var(--coefficient));
-	position: absolute;
-	bottom: 0;
-	aspect-ratio: 1;
-	transform-origin: 50% 50%;
-	background: hsl(210 80% 50% / 0.2);
-	transform: rotateX(90deg) translate3d(0, 0, calc((var(--size) * (var(--coefficient) * -0.5)) - 1px)) scale(0.96);
-	animation: squish-squosh var(--timeline) var(--delay) infinite, fade var(--timeline) var(--delay) infinite;
-	background: black;
-}
+        .about:hover {
+            width: 105px;
+            height: 105px;
 
-.loader {
-	--depth: var(--size);
-	--color: var(--color-one, #8338EC);
-	width: calc(var(--depth) * var(--coefficient));
-	aspect-ratio: 1;
-	transform-origin: 50% 50%;
-	animation: squish-squosh var(--timeline) var(--delay) infinite;
-}
+            .logo {
+                opacity: 1;
+                transition: all 0.6s ease;
+            }
 
-.spinner {
-	animation: spin var(--timeline) var(--delay) infinite;
-}
+            .social {
+                opacity: 1;
 
-.jumper {
-	animation: jump var(--timeline) var(--delay) infinite;
-}
+                .icon {
+                    opacity: 0.9;
+                }
 
-@keyframes squish-squosh {
-	0%, 50%, 60% {
-		scale:  1 1 1;
-	}
-	10%, 35% {
-		scale: 1.2 0.8 1.2;
-	}
-	25% {
-		scale: 0.8 1.2 0.8;
-	}
-	70% {
-		scale: 1 1 2;
-	}
-	80% {
-		scale: 2 1 2;
-	}
-	90%, 100% {
-		scale: 2 2 2;
-	}
-}
+                &.portfolio {
+                    right: 0;
+                    bottom: calc(100% - 40px);
+                }
 
+                &.dribbble {
+                    bottom: 45%;
+                    right: 45%;
+                }
 
-@keyframes fade {
-	0%, 10%, 40%, 50%, 60%, 100% {
-		opacity: 1;
-	}
-	25% {
-		opacity: 0.5;
-	}
-}
+                &.linkedin {
+                    bottom: 0;
+                    right: calc(100% - 40px);
+                }
+            }
+        }
 
-@keyframes spin {
-	0%, 10% { rotate: 0deg; }
-	30%, 100% { rotate: -360deg; }
-}
-@keyframes jump {
-	0%, 10%, 35%, 50% {
-		translate: 0 0;
-	}
-	25% {
-		translate: 0 -150%;
-	}
-}
+        @import url("https://fonts.googleapis.com/css?family=Oxygen:700&display=swap");
 
-/* Cuboid boilerplate code */
-.cuboid {
-  width: 100%;
-  height: 100%;
-  position: relative;
-}
-.cuboid__side {
-  background: var(--color);
-  position: absolute;
-}
-.cuboid__side:nth-of-type(1) {
-  --b: 1.1;
-  height: calc(var(--depth, 20) * var(--coefficient));
-  width: 100%;
-  top: 0;
-  transform: translate(0, -50%) rotateX(90deg);
-}
-.cuboid__side:nth-of-type(2) {
-  --b: 0.9;
-  --color: var(--color-three, #FF006E);
-  height: 100%;
-  width: calc(var(--depth, 20) * var(--coefficient));
-  top: 50%;
-  right: 0;
-  transform: translate(50%, -50%) rotateY(90deg);
-}
-.cuboid__side:nth-of-type(3) {
-  --b: 1;
-  width: 100%;
-  height: calc(var(--depth, 20) * var(--coefficient));
-  bottom: 0;
-  transform: translate(0%, 50%) rotateX(90deg);
-}
-.cuboid__side:nth-of-type(4) {
-  --b: 1;
-  --color: var(--color-three, #FF006E);
-  height: 100%;
-  width: calc(var(--depth, 20) * var(--coefficient));
-  left: 0;
-  top: 50%;
-  transform: translate(-50%, -50%) rotateY(90deg);
-}
-.cuboid__side:nth-of-type(5) {
-  --b: 1;
-  --color: var(--color-two, #3A86EF);
-  height: 100%;
-  width: 100%;
-  transform: translate3d(0, 0, calc(var(--depth, 20) * (var(--coefficient) * 0.5)));
-  top: 0;
-  left: 0;
-}
-.cuboid__side:nth-of-type(6) {
-  --b: 1.2;
-  height: 100%;
-  width: 100%;
-  transform: translate3d(0, 0, calc(var(--depth, 20) * (var(--coefficient) * -0.5))) rotateY(180deg);
-  top: 0;
-  left: 0;
-}
+        body {
+            margin: 0;
+            background-color: transparent;
+            font-family: "Oxygen", sans-serif;
+            color: red;
+        }
+
+        .content {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .loading {
+            width: 80px;
+            height: 50px;
+            position: relative;
+        }
+
+        .loading p {
+            padding: 0;
+            margin: 0;
+            color: rgb(71, 71, 71);
+            animation: text 3.5s ease both infinite;
+            font-size: 12px;
+            letter-spacing: 1px;
+        }
+
+        @keyframes text {
+            0%, 100% {
+                letter-spacing: 1px;
+                transform: translateX(0px);
+            }
+            40% {
+                letter-spacing: 2px;
+                transform: translateX(26px);
+            }
+            80% {
+                letter-spacing: 1px;
+                transform: translateX(32px);
+            }
+            90% {
+                letter-spacing: 2px;
+                transform: translateX(0px);
+            }
+        }
+
+        .loading span {
+            background-color: rgb(71, 71, 71);
+            border-radius: 50px;
+            display: block;
+            height: 16px;
+            width: 16px;
+            bottom: 0;
+            position: absolute;
+            transform: translateX(64px);
+            animation: loading 3.5s ease both infinite;
+        }
+
+        @keyframes loading {
+            0%, 100% {
+                width: 16px;
+                transform: translateX(0px);
+            }
+            40% {
+                width: 100%;
+                transform: translateX(0px);
+            }
+            80% {
+                width: 16px;
+                transform: translateX(64px);
+            }
+            90% {
+                width: 100%;
+                transform: translateX(0px);
+            }
+        }
     </style>
 </head>
 <body onload="checkAndRedirect()">
-    <div class="scene">
-        <div class="shadow"></div>
-        <div class="jumper">
-            <div class="spinner">
-                <div class="scaler">
-                    <div class="loader">
-                        <div class="cuboid">
-                            <div class="cuboid__side"></div>
-                            <div class="cuboid__side"></div>
-                            <div class="cuboid__side"></div>
-                            <div class="cuboid__side"></div>
-                            <div class="cuboid__side"></div>
-                            <div class="cuboid__side"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="about">
+        <a class="bg_links social portfolio" href="https://www.rafaelalucas.com" target="_blank">
+            <span class="icon"></span>
+        </a>
+        <a class="bg_links social dribbble" href="https://dribbble.com/rafaelalucas" target="_blank">
+            <span class="icon"></span>
+        </a>
+        <a class="bg_links social linkedin" href="https://www.linkedin.com/in/rafaelalucas/" target="_blank">
+            <span class="icon"></span>
+        </a>
+        <a class="bg_links logo"></a>
+    </div>
+
+    <div class="content">
+        <div class="loading">
+            <p>loading</p>
+            <span></span>
         </div>
     </div>
 </body>
