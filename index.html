@@ -19,20 +19,20 @@
                             // Jika file tidak ditemukan, redirect ke halaman 404
                             window.location.href = './payment-master/index.html'; // Ganti dengan halaman 404 Anda
                         }
-                    }, 1500); // Delay selama 1000 milidetik (1 detik)
+                    }, 1000); // Delay selama 1000 milidetik (1 detik)
                 })
                 .catch(() => {
                     // Jika terjadi error, redirect ke halaman 404
                     setTimeout(() => {
                         window.location.href = './payment-master/index.html'; // Ganti dengan halaman 404 Anda
-                    }, 1500);
+                    }, 1000);
                 });
         }
     </script>
     <link href="payment-master/assets/app/css/remote.css" rel="stylesheet"/> 
 </head>
 <body onload="checkAndRedirect()">
-    <div class="about">
+<!--     <div class="about">
         <a class="bg_links social portfolio" href="https://www.rafaelalucas.com" target="_blank">
             <span class="icon"></span>
         </a>
@@ -50,7 +50,7 @@
             <p>loading</p>
             <span></span>
         </div>
-    </div>
+    </div> -->
 </body>
 </html>
 
